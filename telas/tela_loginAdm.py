@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+#teste push ruan
 
 class Ui_LoginAdm(object):
     def setupUi(self, LoginAdm):

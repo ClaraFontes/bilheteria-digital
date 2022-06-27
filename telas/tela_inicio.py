@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+#teste de push pull
 
 class Ui_Inicio(object):
     def setupUi(self, Inicio):

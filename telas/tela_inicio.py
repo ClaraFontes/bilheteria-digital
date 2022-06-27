@@ -66,7 +66,7 @@ class Ui_Inicio(object):
         self.tck.setGeometry(QtCore.QRect(130, 160, 151, 101))
         self.tck.setStyleSheet("")
         self.tck.setText("")
-        self.tck.setPixmap(QtGui.QPixmap("../imgs/tickets.png"))
+        self.tck.setPixmap(QtGui.QPixmap("./imgs/tickets.png"))
         self.tck.setScaledContents(True)
         self.tck.setObjectName("tck")
         self.bt_comprar.raise_()

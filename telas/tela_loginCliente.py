@@ -65,7 +65,7 @@ class Ui_Form(object):
         self.tck.setGeometry(QtCore.QRect(160, 30, 111, 71))
         self.tck.setStyleSheet("")
         self.tck.setText("")
-        self.tck.setPixmap(QtGui.QPixmap("../imgs/tickets.png"))
+        self.tck.setPixmap(QtGui.QPixmap("./imgs/tickets.png"))
         self.tck.setScaledContents(True)
         self.tck.setObjectName("tck")
         self.texto_bemvindo = QtWidgets.QTextEdit(self.frame)

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Inicio</class>
+ <widget class="QWidget" name="Inicio">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>442</width>
+    <height>694</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Início</string>
+  </property>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>421</width>
+     <height>671</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(232, 232, 232);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QPushButton" name="bt_comprar">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>380</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background-color: rgba(221, 33, 33, 0.99);
+	border-radius: 12px;
+	color: rgb(238, 238, 238);
+}
+
+QPushButton:hover{
+	background-color: rgb(255, 206, 137);
+	border-radius: 12px;
+	color: rgb(100, 76, 47);
+}</string>
+    </property>
+    <property name="text">
+     <string>COMPRAR INGRESSOS</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bt_vender">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>300</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background-color: rgba(221, 33, 33, 0.99);
+	border-radius: 12px;
+	color: rgb(238, 238, 238);
+}
+
+QPushButton:hover{
+	background-color: rgb(255, 206, 137);
+	border-radius: 12px;
+	color: rgb(100, 76, 47);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>VENDER EVENTO</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="tck">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>160</y>
+      <width>151</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../imgs/tickets.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <zorder>bt_comprar</zorder>
+   <zorder>tck</zorder>
+   <zorder>bt_vender</zorder>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

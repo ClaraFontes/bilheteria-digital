@@ -10,89 +10,84 @@ cadastroCliente = uic.loadUi('./telas/tela_cadastroCliente.ui')
 perfilAdm = uic.loadUi('./telas/tela_perfilAdm.ui')
 postarEvento = uic.loadUi('./telas/tela_postEvento.ui')
 
-# validando.
-telainicio = True
-telaloginAdm = False
-telaloginCliente = False
-telacadastroAdm = False
-telacadastroCliente = False
-telaperfilAdm = False
-telapostarEvento = False
-
 tela = 'Tela atual: Inicio'
 
-
-def func_abrirloginAdm():
+def abrirloginAdm():
     inicio.hide()
     loginAdm.show()
-    global tela, telaloginAdm, telainicio
+    global tela
     tela = 'Tela atual: Login do Adm'
-    telainicio = False
-    telaloginAdm = True
-    print(telaloginAdm)
     print(tela)
 
-
-def func_abrirloginCliente():
+def abrirloginCliente():
     inicio.hide()
     loginCliente.show()
-    global tela, telaloginCliente
-    telaloginCliente = True
+    global tela
     tela = 'Tela atual: Login do Cliente'
     print(tela)
 
-
-def func_abrirCadastroAdm():
+def abrirCadastroAdm():
     loginAdm.hide()
     cadastroAdm.show()
-    global tela, telacadastroAdm
-    telacadastroAdm = True
+    global tela
     tela = 'Tela atual: Cadastro do Adm'
     print(tela)
 
 
-def func_abrirCadastroCliente():
+def abrirCadastroCliente():
     loginCliente.hide()
     cadastroCliente.show()
-    global tela, telacadastroCliente
-    telacadastroCliente = True
+    global tela
     tela = 'Tela atual: Cadastro do Cliente'
     print(tela)
 
-
-'''
-def func_abrirPerfilAdm():
-    loginAdm.hide()
+def abrirperfilAdm():
+    loginAdm.hide() or cadastroAdm.hide()
     perfilAdm.show()
     global tela
     tela = 'Tela atual: Perfil do Adm'
     print(tela)
 
-def func_abrirPostarEvento():
+def abrirPostarEvento():
     perfilAdm.hide()
     postarEvento.show()
     global tela
     tela = 'Tela atual: Postando Evento'
     print(tela)
 
-print(telaloginAdm) # False antes da função ser executada
-func_abrirloginAdm()
-print(telaloginAdm) # True depois da função ser executada
-'''
-if inicio.bt_vender.clicked(True):
-    func_abrirloginAdm()
-elif inicio.bt_comprar.clicked(True):
-    func_abrirloginCliente()
+def voltar_cadastroAdm():
+    cadastroAdm.hide()
+    loginAdm.show()
+    global tela
+    tela = 'Tela atual: Voltou ao login do Adm'
+    print(tela)
 
-# inicio.bt_vender.clicked.connect(func_abrirloginAdm) # abre login adm.
-# inicio.bt_comprar.clicked.connect(func_abrirloginCliente) # abre login cliente.
+def voltar_perfilAdm():
+    perfilAdm.hide()
+    loginAdm.show()
+    global tela
+    tela = 'Tela atual: Voltou ao login do Adm'
+    print(tela)
 
-# arrumar um jeito do programa reconhecer que a função de tornar a tela de início falsa foi executada quando o botão foi clicado.
-if telainicio != True:
-    if telaloginAdm != False:
-        print(f'telaloginAdm = {telaloginAdm}')
-    elif telaloginCliente != False:
-        print(f'telaloginCliente = {telaloginCliente}')
+#ADM
+# botões da tela de início:
+inicio.bt_vender.clicked.connect(abrirloginAdm)
+inicio.bt_comprar.clicked.connect(abrirloginCliente)
+
+# botões da tela de Login do Adm:
+loginAdm.bt_loginAdm.clicked.connect(abrirperfilAdm)
+loginAdm.bt_cadastrarAdm.clicked.connect(abrirCadastroAdm)
+
+# botões da tela de Cadastro do Adm:
+cadastroAdm.bt_salvarloginAdm.clicked.connect(abrirperfilAdm)
+cadastroAdm.bt_voltarAdm.clicked.connect(voltar_cadastroAdm)
+
+#botões da tela de Perfil do Adm:
+perfilAdm.bt_voltarperfilAdm.clicked.connect(voltar_perfilAdm)
+
+# botões da tela de Login do Cliente:
+#loginCliente.bt_loginCliente.clicked.connect(abrirperfilCliente) >> tela ainda não criada.
+loginCliente.bt_cadastrarCliente.clicked.connect(abrirCadastroCliente)
 
 print(tela)
 inicio.show()

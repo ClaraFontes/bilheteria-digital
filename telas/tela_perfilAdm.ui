@@ -111,7 +111,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Bilheteria Online&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="bt_voltar">
+   <widget class="QPushButton" name="bt_voltarperfilAdm">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -349,7 +349,7 @@ QPushButton:hover{
    <zorder>tck</zorder>
    <zorder>bt_navegarAdm</zorder>
    <zorder>texto_topo</zorder>
-   <zorder>bt_voltar</zorder>
+   <zorder>bt_voltarperfilAdm</zorder>
    <zorder>texto_olaNomeAdm</zorder>
    <zorder>texto_infoEmailADM</zorder>
    <zorder>bt_cadastroNovoEvento</zorder>

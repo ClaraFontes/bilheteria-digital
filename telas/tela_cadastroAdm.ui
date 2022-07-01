@@ -320,7 +320,7 @@ border-radius: 12px;
 border: none;</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="bt_voltar">
+     <widget class="QPushButton" name="bt_voltarAdm">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -382,7 +382,7 @@ QPushButton:hover{
      <zorder>texto_confirmaSenhaAdm</zorder>
      <zorder>texto_telefoneAdm</zorder>
      <zorder>box_confirmaSenha</zorder>
-     <zorder>bt_voltar</zorder>
+     <zorder>bt_voltarAdm</zorder>
     </widget>
    </item>
   </layout>

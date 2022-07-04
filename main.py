@@ -1,3 +1,5 @@
+
+# arquivo para o main da alteração final do projeto.
 from PyQt6 import uic, QtWidgets
 
 app = QtWidgets.QApplication([])

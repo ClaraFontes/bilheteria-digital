@@ -4,7 +4,6 @@
  <widget class="QWidget" name="Form">
   <property name="geometry">
    <rect>
-   
     <x>0</x>
     <y>0</y>
     <width>441</width>
@@ -254,6 +253,53 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Senha&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="bt_voltarloginCliente">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>630</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background-color: rgba(221, 33, 33, 0.99);
+	border-radius: 12px;
+	color: rgb(238, 238, 238);
+}
+
+QPushButton:hover{
+	background-color: rgb(255, 206, 137);
+	border-radius: 12px;
+	color: rgb(100, 76, 47);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../imgs/voltar.png</normaloff>../imgs/voltar.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>25</width>
+      <height>25</height>
+     </size>
+    </property>
+   </widget>
    <zorder>texto_senha</zorder>
    <zorder>texto_usuario</zorder>
    <zorder>texto_ask</zorder>
@@ -264,6 +310,7 @@ p, li { white-space: pre-wrap; }
    <zorder>box_senha</zorder>
    <zorder>texto_erro</zorder>
    <zorder>box_usuario</zorder>
+   <zorder>bt_voltarloginCliente</zorder>
   </widget>
  </widget>
  <resources/>

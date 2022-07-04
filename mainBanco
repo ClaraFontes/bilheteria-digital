@@ -1,0 +1,25 @@
+import sqlite3
+import mainteste
+from PyQt6 import uic
+
+cadastroAdm = uic.loadUi('./telas/tela_cadastroAdm.ui')
+
+# em estudo... ainda não funcionando...
+def salvardadosAdm():
+    usuario = cadastroAdm.usuarioAdm.text()
+    email = cadastroAdm.emailAdm.text()
+    telefone = cadastroAdm.telefoneAdm.text()
+    senha = cadastroAdm.senhaAdm.text()
+    try:
+        banco = sqlite3.connect('bancoAdm.db')
+        cursor = banco.cursor
+        cursor.execute("CRIATE TABLE IF NOT EXISTS dados (usuario text, email text, telefone text, senha text)")
+        cursor.execute("INSERT INTO dados VALUES ('"+usuario+","+email+","+telefone+","+senha+"')")
+        banco.commit()
+        banco.close()
+        print('dados inseridos!')
+
+    except sqlite3.Error as erro:
+        print('Erro ao inserir dados', erro)
+
+#cadastroAdm.bt_salvarloginAdm.clicked.connect(salvardadosAdm)

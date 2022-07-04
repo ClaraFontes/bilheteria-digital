@@ -33,7 +33,6 @@ def abrirCadastroAdm():
     tela = 'Tela atual: Cadastro do Adm'
     print(tela)
 
-
 def abrirCadastroCliente():
     loginCliente.hide()
     cadastroCliente.show()
@@ -55,6 +54,14 @@ def abrirPostarEvento():
     tela = 'Tela atual: Postando Evento'
     print(tela)
 
+# botões de voltar adm.
+def voltar_loginAdm():
+    loginAdm.hide()
+    inicio.show()
+    global tela
+    tela = 'Tela atual: Voltou à tela de início'
+    print(tela)
+
 def voltar_cadastroAdm():
     cadastroAdm.hide()
     loginAdm.show()
@@ -69,25 +76,49 @@ def voltar_perfilAdm():
     tela = 'Tela atual: Voltou ao login do Adm'
     print(tela)
 
-#ADM
+# botões de voltar cliente.
+def voltar_loginCliente():
+    loginCliente.hide()
+    inicio.show()
+    global tela
+    tela = 'Tela atual: Voltou à tela de início'
+    print(tela)
+
+def voltar_cadastroCliente():
+    cadastroCliente.hide()
+    loginCliente.show()
+    global tela
+    tela = 'Tela atual: Voltou ao login do Cliente'
+    print(tela)
+
 # botões da tela de início:
 inicio.bt_vender.clicked.connect(abrirloginAdm)
 inicio.bt_comprar.clicked.connect(abrirloginCliente)
 
-# botões da tela de Login do Adm:
+# >> BUTTON CLICKED ADM
+# TELA DE LOGIN:
 loginAdm.bt_loginAdm.clicked.connect(abrirperfilAdm)
 loginAdm.bt_cadastrarAdm.clicked.connect(abrirCadastroAdm)
+loginAdm.bt_voltarloginAdm.clicked.connect(voltar_loginAdm)
 
-# botões da tela de Cadastro do Adm:
+# TELA DE CADASTRO:
 cadastroAdm.bt_salvarloginAdm.clicked.connect(abrirperfilAdm)
-cadastroAdm.bt_voltarAdm.clicked.connect(voltar_cadastroAdm)
+cadastroAdm.bt_voltarcadastroAdm.clicked.connect(voltar_cadastroAdm)
 
-#botões da tela de Perfil do Adm:
+# TELA DE PERFIL:
 perfilAdm.bt_voltarperfilAdm.clicked.connect(voltar_perfilAdm)
 
-# botões da tela de Login do Cliente:
-#loginCliente.bt_loginCliente.clicked.connect(abrirperfilCliente) >> tela ainda não criada.
+# >> BUTTON CLICKED CLIENTE
+# TELA DE LOGIN:
+# loginCliente.bt_loginCliente.clicked.connect(abrirperfilCliente) >> tela ainda não criada.
 loginCliente.bt_cadastrarCliente.clicked.connect(abrirCadastroCliente)
+loginCliente.bt_voltarloginCliente.clicked.connect(voltar_loginCliente)
+
+# TELA DE CADASTRO:
+cadastroCliente.bt_voltarCliente.clicked.connect(voltar_cadastroCliente)
+
+# TELA DE PERFIL:
+
 
 print(tela)
 inicio.show()

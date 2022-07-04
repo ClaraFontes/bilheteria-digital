@@ -42,9 +42,10 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial Rounded MT Bold</family>
       <pointsize>10</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -78,9 +79,10 @@ QPushButton:hover{
     </property>
     <property name="font">
      <font>
+      <family>Arial Rounded MT Bold</family>
       <pointsize>10</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="styleSheet">

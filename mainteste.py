@@ -8,6 +8,7 @@ loginCliente = uic.loadUi('./telas/tela_loginCliente.ui')
 cadastroAdm = uic.loadUi('./telas/tela_cadastroAdm.ui')
 cadastroCliente = uic.loadUi('./telas/tela_cadastroCliente.ui')
 perfilAdm = uic.loadUi('./telas/tela_perfilAdm.ui')
+perfilCliente = uic.loadUi('./telas/tela_perfilCliente.ui')
 postarEvento = uic.loadUi('./telas/tela_postEvento.ui')
 
 tela = 'Tela atual: Inicio'
@@ -47,12 +48,23 @@ def abrirperfilAdm():
     tela = 'Tela atual: Perfil do Adm'
     print(tela)
 
+def abrirperfilCliente():
+    loginCliente.hide() or cadastroCliente.hide()
+    perfilCliente.show()
+    global tela
+    tela = 'Tela atual: Perfil do Cliente'
+    print(tela)
+
 def abrirPostarEvento():
     perfilAdm.hide()
     postarEvento.show()
     global tela
     tela = 'Tela atual: Postando Evento'
     print(tela)
+
+def sair():
+    perfilAdm.close() 
+    perfilCliente.close()
 
 # botões de voltar adm.
 def voltar_loginAdm():
@@ -91,6 +103,13 @@ def voltar_cadastroCliente():
     tela = 'Tela atual: Voltou ao login do Cliente'
     print(tela)
 
+def voltar_perfilCliente(): # deve voltar para a tela dos eventos, mas de início volta para o login.
+    perfilCliente.hide()
+    loginCliente.show()
+    global tela
+    tela = 'Tela atual: Voltou ao login do Cliente'
+    print(tela)
+
 # botões da tela de início:
 inicio.bt_vender.clicked.connect(abrirloginAdm)
 inicio.bt_comprar.clicked.connect(abrirloginCliente)
@@ -106,18 +125,22 @@ cadastroAdm.bt_salvarloginAdm.clicked.connect(abrirperfilAdm)
 cadastroAdm.bt_voltarcadastroAdm.clicked.connect(voltar_cadastroAdm)
 
 # TELA DE PERFIL:
+perfilAdm.bt_sairAdm.clicked.connect(sair)
 perfilAdm.bt_voltarperfilAdm.clicked.connect(voltar_perfilAdm)
 
 # >> BUTTON CLICKED CLIENTE
 # TELA DE LOGIN:
-# loginCliente.bt_loginCliente.clicked.connect(abrirperfilCliente) >> tela ainda não criada.
+loginCliente.bt_loginCliente.clicked.connect(abrirperfilCliente)
 loginCliente.bt_cadastrarCliente.clicked.connect(abrirCadastroCliente)
 loginCliente.bt_voltarloginCliente.clicked.connect(voltar_loginCliente)
 
 # TELA DE CADASTRO:
+cadastroCliente.bt_salvarloginCliente.clicked.connect(abrirperfilCliente)
 cadastroCliente.bt_voltarCliente.clicked.connect(voltar_cadastroCliente)
 
 # TELA DE PERFIL:
+perfilCliente.bt_sairCliente.clicked.connect(sair)
+perfilCliente.bt_voltarperfilCliente.clicked.connect(voltar_perfilCliente)
 
 
 print(tela)

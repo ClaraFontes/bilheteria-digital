@@ -13,21 +13,21 @@
 - [Pessoas Desenvolvedoras do Projeto](#pessoas-desenvolvedoras-do-projeto)
  
  
-# Descrição do Projeto:
+# 📝 Descrição do Projeto:
  
  Interface Gráfica para compras e vendas de eventos da área específica de apresentações teatrais. Através das bibliotecas PyQt5 e PyQt6, junto com aplicativo de Designer e Banco de Dados. 
  
- # Funcionalidades:
+# ⚙️ Funcionalidades:
  
  A Interface tem o objetivo vender ingressos de eventos teatrais de forma organizada e prática. Sendo uma interface que permite acesso ao usuário através de um cadastro e senha. A interface terá dois alcances, vendendor e comprador, ou seja, dois tipos de cadastro. Pode ser feito um cadastro do tipo vendendor para aquele que deseja publicar seu evento ou um cadastro de comprador para quem quer comprar ingressos de algum evento disponível dentro da aplicação. Os eventos publicados serão voltados somente para a área específica de apresentações em teatros, podendo ser eventos criados por pequenas escolas de dança, teatro ou música. 
 
-# Tecnologias utilizadas:
+# 💻 Tecnologias utilizadas:
 
 - ``PyQt5``
 - ``PyQt6``
 - ``SQlite``
 
-# Pessoas Desenvolvedoras do Projeto
+# 👥 Pessoas Desenvolvedoras do Projeto
 
  ANA CLARA -https://github.com/ClaraFontes
  

@@ -24,10 +24,11 @@
 # 💻 Tecnologias utilizadas:
 
 - ``PyQt5``
+- ``Qt Designer``
 - ``PyQt6``
 - ``SQlite``
 
-# 👥 Pessoas Desenvolvedoras do Projeto
+# 👥 DesenvolvedoreUs do Projeto
 
  ANA CLARA -https://github.com/ClaraFontes
  

@@ -28,7 +28,7 @@
 - ``PyQt6``
 - ``SQlite``
 
-# 👥 DesenvolvedoreUs do Projeto
+# 👥 Desenvolvedores do Projeto
 
  ANA CLARA -https://github.com/ClaraFontes
  

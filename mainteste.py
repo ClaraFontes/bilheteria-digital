@@ -1,6 +1,9 @@
 from PyQt6 import uic, QtWidgets
+import sqlite3
 
+######################################################################################
 app = QtWidgets.QApplication([])
+tela = 'Tela atual: Inicio'
 # importando as telas.
 inicio = uic.loadUi('./telas/tela_inicio.ui')
 loginAdm = uic.loadUi('./telas/tela_loginAdm.ui')
@@ -11,7 +14,37 @@ perfilAdm = uic.loadUi('./telas/tela_perfilAdm.ui')
 perfilCliente = uic.loadUi('./telas/tela_perfilCliente.ui')
 postarEvento = uic.loadUi('./telas/tela_postEvento.ui')
 
-tela = 'Tela atual: Inicio'
+######################################################################################
+
+def salvar_dadosAdm():
+    usuario = cadastroAdm.usuarioAdm.text()
+    email = cadastroAdm.emailAdm.text()
+    telefone = cadastroAdm.telefoneAdm.text()
+    senha = cadastroAdm.senhaAdm.text()
+    confirmacao = cadastroAdm.confirmasenhaAdm.text()
+
+    if (senha == confirmacao):
+        try:
+            print(usuario)
+            print(email)
+            print(telefone)
+            print(senha)
+            """ bancoAdm = sqlite3.connect('bancoAdm.db')
+            cursor_adm = bancoAdm.cursor()
+            cursor_adm.execute("CREATE TABLE IF NOT EXISTS adm (usuario text, email text, telefone integer, senha text)")
+            cursor_adm.execute("INSERT INTO adm VALUES ('"+usuario+","+email+","+telefone+","+senha+"')")
+            
+            bancoAdm.commit()
+            bancoAdm.close()
+            cadastroAdm.texto_erro2.setText('Usuário cadastrado!') """
+
+        except:
+            print('Erro')
+        #except sqlite3.Error as erro:
+        #    print('Erro ao inserir dados:', erro)
+    else:
+        cadastroAdm.textoErro2.setText('Confirmação de senha inválida.')
+
 
 def abrirloginAdm():
     inicio.hide()
@@ -88,6 +121,7 @@ def voltar_perfilAdm():
     tela = 'Tela atual: Voltou ao login do Adm'
     print(tela)
 
+
 # botões de voltar cliente.
 def voltar_loginCliente():
     loginCliente.hide()
@@ -121,7 +155,7 @@ loginAdm.bt_cadastrarAdm.clicked.connect(abrirCadastroAdm)
 loginAdm.bt_voltarloginAdm.clicked.connect(voltar_loginAdm)
 
 # TELA DE CADASTRO:
-cadastroAdm.bt_salvarloginAdm.clicked.connect(abrirperfilAdm)
+cadastroAdm.bt_salvarloginAdm.clicked.connect(salvar_dadosAdm)
 cadastroAdm.bt_voltarcadastroAdm.clicked.connect(voltar_cadastroAdm)
 
 # TELA DE PERFIL:

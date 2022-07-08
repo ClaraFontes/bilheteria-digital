@@ -1,17 +1,13 @@
 <h1 align="center">  BILHETERIA DIGITAL  </h1>
-<h1 align="center">  projeto 2022        </h1>
+<h1 align="center">   - projeto 2022 - </h1>
 
-![tickets](https://user-images.githubusercontent.com/107974193/177388710-bcd47032-046c-44bf-94ba-ec90bd4db534.png)
-
-<p align="center">
+<center>
+<img src="https://user-images.githubusercontent.com/107974193/177388710-bcd47032-046c-44bf-94ba-ec90bd4db534.png" height="300" width="500">
+<br>
 <img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
-</p>
-     
-- [Descrição do Projeto](#descrição-do-projeto)
-- [Funcionalidades](#funcionalidades)
-- [Tecnologias utilizadas](#tecnologias-utilizadas)
-- [Pessoas Desenvolvedoras do Projeto](#pessoas-desenvolvedoras-do-projeto)
- 
+</center>
+
+<br>
  
 # 📝 Descrição do Projeto:
  
@@ -25,7 +21,7 @@
 
 - ``Qt Designer``
 - ``PyQt6``
-- ``SQlite``
+- ``SQLite``
 
 # 👥 Desenvolvedores do Projeto
 

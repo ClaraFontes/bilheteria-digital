@@ -3,7 +3,9 @@
 
 <p align = "center">
 <img src="https://user-images.githubusercontent.com/107974193/177388710-bcd47032-046c-44bf-94ba-ec90bd4db534.png" height="300" width="450">
+</p>
 
+<p align = "center">
 <img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
 </p>
 

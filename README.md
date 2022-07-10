@@ -2,7 +2,7 @@
 <h1 align="center">   - projeto 2022 - </h1>
 
 <p align = "center">
-<img src="https://user-images.githubusercontent.com/107974193/177388710-bcd47032-046c-44bf-94ba-ec90bd4db534.png" height="300" width="450">
+<img src="https://user-images.githubusercontent.com/107974193/177388710-bcd47032-046c-44bf-94ba-ec90bd4db534.png" height="300" width="480">
 </p>
 
 <p align = "center">

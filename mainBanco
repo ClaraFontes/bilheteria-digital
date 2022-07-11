@@ -1,3 +1,4 @@
+'''
 import sqlite3
 import mainteste
 from PyQt6 import uic, QtWidgets
@@ -5,7 +6,7 @@ from PyQt6 import uic, QtWidgets
 app = QtWidgets.QApplication([])
 cadastroAdm = uic.loadUi('./telas/tela_cadastroAdm.ui')
 
-'''
+
 def salvar_dadosAdm():
     usuario = cadastroAdm.usuarioAdm.text()
     email = cadastroAdm.emailAdm.text()
@@ -19,7 +20,7 @@ def salvar_dadosAdm():
             print(email)
             print(telefone)
             print(senha)
-            """ bancoAdm = sqlite3.connect('bancoAdm.db')
+            bancoAdm = sqlite3.connect('bancoAdm.db')
             cursor_adm = bancoAdm.cursor()
             cursor_adm.execute("CREATE TABLE IF NOT EXISTS adm (usuario text, email text, telefone integer, senha text)")
             cursor_adm.execute("INSERT INTO adm VALUES ('"+usuario+","+email+","+telefone+","+senha+"')")

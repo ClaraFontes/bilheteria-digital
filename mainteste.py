@@ -14,7 +14,6 @@ cadastroCliente = uic.loadUi('./telas/tela_cadastroCliente.ui')
 perfilAdm = uic.loadUi('./telas/tela_perfilAdm.ui')
 perfilCliente = uic.loadUi('./telas/tela_perfilCliente.ui')
 postarEvento = uic.loadUi('./telas/tela_postEvento.ui')
-
 ######################################################################################
 
 # 1 banco, 3 tabelas (adm; cliente; eventos.)

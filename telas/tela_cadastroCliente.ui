@@ -280,7 +280,7 @@ border: none;</string>
      <set>Qt::AlignCenter</set>
     </property>
     <property name="placeholderText">
-     <string>(00) 90000-0000</string>
+     <string>insira apenas números: 00 90000-0000</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="cpfCliente">
@@ -306,7 +306,7 @@ border: none;</string>
      <set>Qt::AlignCenter</set>
     </property>
     <property name="placeholderText">
-     <string>xxx.xxx.xxx-xx</string>
+     <string>insira apenas números: 00000000000</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="texto_emailCliente">
@@ -508,22 +508,6 @@ QPushButton:hover{
      </size>
     </property>
    </widget>
-   <widget class="QLineEdit" name="textoErro">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>560</y>
-      <width>271</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: none;</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
      <rect>
@@ -570,7 +554,6 @@ p, li { white-space: pre-wrap; }
    <zorder>texto_confirmaSenhaCliente</zorder>
    <zorder>confirmasenhaCliente</zorder>
    <zorder>bt_voltarCliente</zorder>
-   <zorder>textoErro</zorder>
    <zorder>textEdit</zorder>
   </widget>
   <widget class="QLineEdit" name="erro2">

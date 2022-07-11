@@ -269,7 +269,7 @@ border: none;</string>
         <set>Qt::AlignCenter</set>
        </property>
        <property name="placeholderText">
-        <string>(00) 90000-0000</string>
+        <string>insira apenas números: 00 90000-0000</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="senhaAdm">

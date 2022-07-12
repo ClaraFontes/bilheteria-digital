@@ -4,7 +4,6 @@ import time
 
 ######################################################################################
 app = QtWidgets.QApplication([])
-tela = 'Tela atual: Inicio'
 # importando as telas.
 inicio = uic.loadUi('./telas/tela_inicio.ui')
 loginAdm = uic.loadUi('./telas/tela_loginAdm.ui')
@@ -24,14 +23,14 @@ cursor.execute("CREATE TABLE IF NOT EXISTS cliente (usuario TEXT UNIQUE NOT NULL
 #cursor.execute("CREATE TABLE IF NOT EXISTS eventos (xxx)")   
 
 def esperarAdm():
-    cadastroAdm.usuarioAdm.setText('')
-    cadastroAdm.emailAdm.setText('')
-    cadastroAdm.telefoneAdm.setText('')
-    cadastroAdm.senhaAdm.setText('')
-    cadastroAdm.confirmasenhaAdm.setText('')
     time.sleep(1)
-    cadastroAdm.hide()
+    cadastroAdm.hide() or loginAdm.hide()
     perfilAdm.show() 
+
+def esperarCliente():
+    time.sleep(1)
+    cadastroCliente.hide() or loginCliente.hide()
+    perfilCliente.show() 
 
 def salvar_dadosAdm():
     usuario = cadastroAdm.usuarioAdm.text()
@@ -42,13 +41,22 @@ def salvar_dadosAdm():
 
     if (senha != '') and (usuario != '') and (email != '') and (telefone != '') and (senha == confirmacao):
         try:
+            telefone = int(telefone)
             cursor.execute("INSERT INTO adm (usuario, email, telefone, senha) VALUES (?,?,?,?)", (usuario, email, telefone, senha))         
             banco.commit()
             esperarAdm()
+            cadastroAdm.erro.setText('')
+            cadastroAdm.usuarioAdm.setText('')
+            cadastroAdm.emailAdm.setText('')
+            cadastroAdm.telefoneAdm.setText('')
+            cadastroAdm.senhaAdm.setText('')
+            cadastroAdm.confirmasenhaAdm.setText('')
             
         except sqlite3.Error as erro:
             print('Erro ao inserir dados:', erro)
             cadastroAdm.erro.setText(f'{erro} já está em uso.')
+        except ValueError:
+            cadastroAdm.erro.setText('Telefone inválido.')
 
     else: 
         cadastroAdm.erro.setText('Campos vazios ou confirmação de senha inválida.')
@@ -63,65 +71,93 @@ def salvar_dadosACliente():
 
     if (senha != '') and (usuario != '') and (email != '') and (telefone != '') and (cpf != '') and (senha == confirmacao):
         try:
-            cursor.execute("INSERT INTO cliente (usuario, email, telefone, cpf, senha) VALUES (?,?,?,?)", (usuario, email, telefone, cpf, senha))         
+            telefone = int(telefone)
+            cpf = int(cpf)
+            cursor.execute("INSERT INTO cliente (usuario, email, telefone, cpf, senha) VALUES (?,?,?,?,?)", (usuario, email, telefone, cpf, senha))         
             banco.commit()
-            esperarAdm()
-            
+            esperarCliente()
+            cadastroCliente.erro2.setText('')
+            cadastroCliente.usuarioCliente.setText('')
+            cadastroCliente.emailCliente.setText('')
+            cadastroCliente.telefoneCliente.setText('')
+            cadastroCliente.senhaCliente.setText('')
+            cadastroCliente.confirmasenhaCliente.setText('')
+
         except sqlite3.Error as erro:
             print('Erro ao inserir dados:', erro)
-            cadastroCliente.erro.setText(f'{erro} já está em uso.')
+            cadastroCliente.erro2.setText(f'{erro} já está em uso.')
+        except ValueError:
+            cadastroCliente.erro2.setText('Telefone ou CPF inválido.')
 
     else: 
-        cadastroCliente.erro.setText('Campos vazios ou confirmação de senha inválida.')
+        cadastroCliente.erro2.setText('Campos vazios ou confirmação de senha inválida.')
+
+def entrarAdm():
+    usuario = loginAdm.userloginAdm.text()
+    senha = loginAdm.senhaloginAdm.text()
+    if (usuario != ''):
+        try:
+            cursor.execute(f"SELECT senha FROM adm WHERE usuario = '{usuario}'")
+            senhacorreta = cursor.fetchall()
+            if (senha != '') and senha == senhacorreta[0][0]:
+                esperarAdm()
+                loginAdm.userloginAdm.setText('')
+                loginAdm.senhaloginAdm.setText('')
+                loginAdm.texto_erro.setText('')
+            else: 
+                loginAdm.texto_erro.setText('Campo de senha vazio ou senha inválida.')
+
+        except IndexError:
+            loginAdm.texto_erro.setText('Usuário inválido ou senha incorreta.')
+    else:
+        loginAdm.texto_erro.setText('Preencha o campo de usuário.')
+
+def entrarCliente():
+    usuario = loginCliente.userloginCliente.text()
+    senha = loginCliente.senhaloginCliente.text()
+
+    if (usuario != ''):
+        try:
+            cursor.execute(f"SELECT senha FROM cliente WHERE usuario = '{usuario}'")
+            senhacorreta = cursor.fetchall()
+            if (senha != '') and senha == senhacorreta[0][0]:
+                esperarCliente()
+                loginCliente.userloginCliente.setText('')
+                loginCliente.senhaloginCliente.setText('')
+                loginCliente.texto_erro.setText('')
+            else:
+                loginCliente.texto_erro.setText('Campo de senha vazio ou senha inválida.')
+
+        except IndexError:
+            loginCliente.texto_erro.setText('Usuário inválido ou senha incorreta.')
+    else:
+        loginCliente.texto_erro.setText('Preencha o campo de usuário.')
 
 def abrirloginAdm():
     inicio.hide()
     loginAdm.show()
-    global tela
-    tela = 'Tela atual: Login do Adm'
-    print(tela)
 
 def abrirloginCliente():
     inicio.hide()
     loginCliente.show()
-    global tela
-    tela = 'Tela atual: Login do Cliente'
-    print(tela)
 
 def abrirCadastroAdm():
     loginAdm.hide()
     cadastroAdm.show()
-    global tela
-    tela = 'Tela atual: Cadastro do Adm'
-    print(tela)
+    loginAdm.userloginAdm.setText('')
+    loginAdm.senhaloginAdm.setText('')
+    loginAdm.texto_erro.setText('')
 
 def abrirCadastroCliente():
     loginCliente.hide()
     cadastroCliente.show()
-    global tela
-    tela = 'Tela atual: Cadastro do Cliente'
-    print(tela)
-
-def abrirperfilAdm(): # SERÁ APAGADA QUANDO O CADASTRO E LOGIN ESTIVER OK
-    loginAdm.hide() or cadastroAdm.hide()
-    perfilAdm.show()
-    global tela
-    tela = 'Tela atual: Perfil do Adm'
-    print(tela)
-
-def abrirperfilCliente():
-    loginCliente.hide() or cadastroCliente.hide()
-    perfilCliente.show()
-    global tela
-    tela = 'Tela atual: Perfil do Cliente'
-    print(tela)
+    loginCliente.userloginCliente.setText('')
+    loginCliente.senhaloginCliente.setText('')
+    loginCliente.texto_erro.setText('')
 
 def abrirPostarEvento():
     perfilAdm.hide()
     postarEvento.show()
-    global tela
-    tela = 'Tela atual: Postando Evento'
-    print(tela)
 
 def sair():
     banco.close()
@@ -132,46 +168,45 @@ def sair():
 def voltar_loginAdm():
     loginAdm.hide()
     inicio.show()
-    global tela
-    tela = 'Tela atual: Voltou à tela de início'
-    print(tela)
+    loginAdm.userloginAdm.setText('')
+    loginAdm.senhaloginAdm.setText('')
+    loginAdm.texto_erro.setText('')
 
 def voltar_cadastroAdm():
     cadastroAdm.hide()
     loginAdm.show()
-    global tela
-    tela = 'Tela atual: Voltou ao login do Adm'
-    print(tela)
+    cadastroAdm.erro.setText('')
+    cadastroAdm.usuarioAdm.setText('')
+    cadastroAdm.emailAdm.setText('')
+    cadastroAdm.telefoneAdm.setText('')
+    cadastroAdm.senhaAdm.setText('')
+    cadastroAdm.confirmasenhaAdm.setText('')
 
 def voltar_perfilAdm():
     perfilAdm.hide()
     loginAdm.show()
-    global tela
-    tela = 'Tela atual: Voltou ao login do Adm'
-    print(tela)
-
 
 # botões de voltar cliente.
 def voltar_loginCliente():
     loginCliente.hide()
     inicio.show()
-    global tela
-    tela = 'Tela atual: Voltou à tela de início'
-    print(tela)
+    loginCliente.userloginCliente.setText('')
+    loginCliente.senhaloginCliente.setText('')
+    loginCliente.texto_erro.setText('')
 
 def voltar_cadastroCliente():
     cadastroCliente.hide()
     loginCliente.show()
-    global tela
-    tela = 'Tela atual: Voltou ao login do Cliente'
-    print(tela)
+    cadastroCliente.erro2.setText('')
+    cadastroCliente.usuarioCliente.setText('')
+    cadastroCliente.emailCliente.setText('')
+    cadastroCliente.telefoneCliente.setText('')
+    cadastroCliente.senhaCliente.setText('')
+    cadastroCliente.confirmasenhaCliente.setText('')
 
 def voltar_perfilCliente(): # deve voltar para a tela dos eventos, mas de início volta para o login.
     perfilCliente.hide()
     loginCliente.show()
-    global tela
-    tela = 'Tela atual: Voltou ao login do Cliente'
-    print(tela)
 
 
 # botões da tela de início:
@@ -180,12 +215,12 @@ inicio.bt_comprar.clicked.connect(abrirloginCliente)
 
 # >> BUTTON CLICKED ADM
 # TELA DE LOGIN:
-loginAdm.bt_loginAdm.clicked.connect(abrirperfilAdm)
+loginAdm.bt_loginAdm.clicked.connect(entrarAdm) 
 loginAdm.bt_cadastrarAdm.clicked.connect(abrirCadastroAdm)
 loginAdm.bt_voltarloginAdm.clicked.connect(voltar_loginAdm)
 
 # TELA DE CADASTRO:
-cadastroAdm.bt_salvarloginAdm.clicked.connect(salvar_dadosAdm) # <<<<<<<<<<<
+cadastroAdm.bt_salvarloginAdm.clicked.connect(salvar_dadosAdm) 
 cadastroAdm.bt_voltarcadastroAdm.clicked.connect(voltar_cadastroAdm)
 
 # TELA DE PERFIL:
@@ -194,19 +229,17 @@ perfilAdm.bt_voltarperfilAdm.clicked.connect(voltar_perfilAdm)
 
 # >> BUTTON CLICKED CLIENTE
 # TELA DE LOGIN:
-loginCliente.bt_loginCliente.clicked.connect(abrirperfilCliente)
+loginCliente.bt_loginCliente.clicked.connect(entrarCliente) 
 loginCliente.bt_cadastrarCliente.clicked.connect(abrirCadastroCliente)
 loginCliente.bt_voltarloginCliente.clicked.connect(voltar_loginCliente)
 
 # TELA DE CADASTRO:
-cadastroCliente.bt_salvarloginCliente.clicked.connect(salvar_dadosACliente) # <<<<<<<<<<<
+cadastroCliente.bt_salvarloginCliente.clicked.connect(salvar_dadosACliente)
 cadastroCliente.bt_voltarCliente.clicked.connect(voltar_cadastroCliente)
 
 # TELA DE PERFIL:
 perfilCliente.bt_sairCliente.clicked.connect(sair)
 perfilCliente.bt_voltarperfilCliente.clicked.connect(voltar_perfilCliente)
 
-
-print(tela)
 inicio.show()
 app.exec()

@@ -1,19 +1,30 @@
-from PyQt6 import uic, QtWidgets
+from PyQt6 import uic, QtWidgets, QtGui
+from PyQt6.QtCore import Qt
 import sqlite3
 import time
 
-######################################################################################
-app = QtWidgets.QApplication([])
-# importando as telas.
-inicio = uic.loadUi('./telas/tela_inicio.ui')
-loginAdm = uic.loadUi('./telas/tela_loginAdm.ui')
-loginCliente = uic.loadUi('./telas/tela_loginCliente.ui')
-cadastroAdm = uic.loadUi('./telas/tela_cadastroAdm.ui')
-cadastroCliente = uic.loadUi('./telas/tela_cadastroCliente.ui')
-perfilAdm = uic.loadUi('./telas/tela_perfilAdm.ui')
-perfilCliente = uic.loadUi('./telas/tela_perfilCliente.ui')
-postarEvento = uic.loadUi('./telas/tela_postEvento.ui')
-######################################################################################
+###################################################################
+app = QtWidgets.QApplication([])                                  #
+admAtual = ''                                                     #
+email_admAtual = ''                                               #
+clienteAtual = ''                                                 #
+email_clienteAtual = ''                                           #
+tipo = ''                                                         #
+max = 12                                                          #
+min = 0                                                           #
+# importando as telas.                                            #
+inicio = uic.loadUi('./telas/tela_inicio.ui')                     #
+loginAdm = uic.loadUi('./telas/tela_loginAdm.ui')                 #
+loginCliente = uic.loadUi('./telas/tela_loginCliente.ui')         #
+cadastroAdm = uic.loadUi('./telas/tela_cadastroAdm.ui')           #
+cadastroCliente = uic.loadUi('./telas/tela_cadastroCliente.ui')   #
+perfilAdm = uic.loadUi('./telas/tela_perfilAdm.ui')               #
+perfilCliente = uic.loadUi('./telas/tela_perfilCliente.ui')       #
+postarEvento = uic.loadUi('./telas/tela_postEvento.ui')           #
+dadosAdm = uic.loadUi('./telas/tela_dadosAdm.ui')                 #
+dadosCliente = uic.loadUi('./telas/tela_dadosCliente.ui')         #
+principal = uic.loadUi('./telas/tela_principal.ui')               #
+###################################################################
 
 # 1 banco, 3 tabelas (adm; cliente; eventos.)
 banco = sqlite3.connect('banco.db')
@@ -45,6 +56,13 @@ def salvar_dadosAdm():
             cursor.execute("INSERT INTO adm (usuario, email, telefone, senha) VALUES (?,?,?,?)", (usuario, email, telefone, senha))         
             banco.commit()
             esperarAdm()
+            cursor.execute(f"SELECT email FROM adm WHERE usuario = '{usuario}'")
+            global admAtual, email_admAtual
+            admAtual = usuario
+            email_admAtual = cursor.fetchall()
+            perfilAdm.olaAdm.setText(f'Olá, {admAtual}!')
+            perfilAdm.emailAdm.setText(f'{email_admAtual[0][0]}')
+            #-=-=-=--=-=-=---=-=-=-=--=-=-=-=-=-=-=-=-=--=-=-=-=
             cadastroAdm.erro.setText('')
             cadastroAdm.usuarioAdm.setText('')
             cadastroAdm.emailAdm.setText('')
@@ -61,7 +79,7 @@ def salvar_dadosAdm():
     else: 
         cadastroAdm.erro.setText('Campos vazios ou confirmação de senha inválida.')
 
-def salvar_dadosACliente():
+def salvar_dadosCliente():
     usuario = cadastroCliente.usuarioCliente.text()
     email = cadastroCliente.emailCliente.text()
     telefone = cadastroCliente.telefoneCliente.text()
@@ -76,6 +94,13 @@ def salvar_dadosACliente():
             cursor.execute("INSERT INTO cliente (usuario, email, telefone, cpf, senha) VALUES (?,?,?,?,?)", (usuario, email, telefone, cpf, senha))         
             banco.commit()
             esperarCliente()
+            cursor.execute(f"SELECT email FROM cliente WHERE usuario = '{usuario}'")
+            global clienteAtual, email_clienteAtual
+            clienteAtual = usuario
+            email_clienteAtual = cursor.fetchall()
+            perfilCliente.olaCliente.setText(f'Olá, {clienteAtual}!')
+            perfilCliente.emailCliente.setText(f'{email_clienteAtual[0][0]}')
+            #-=-=-=--=-=-=---=-=-=-=--=-=-=-=-=-=-=-=-=--=-=-=-=
             cadastroCliente.erro2.setText('')
             cadastroCliente.usuarioCliente.setText('')
             cadastroCliente.emailCliente.setText('')
@@ -101,6 +126,13 @@ def entrarAdm():
             senhacorreta = cursor.fetchall()
             if (senha != '') and senha == senhacorreta[0][0]:
                 esperarAdm()
+                cursor.execute(f"SELECT email FROM adm WHERE usuario = '{usuario}'")
+                global admAtual, email_admAtual
+                admAtual = usuario
+                email_admAtual = cursor.fetchall()
+                perfilAdm.olaAdm.setText(f'Olá, {admAtual}!')
+                perfilAdm.emailAdm.setText(f'{email_admAtual[0][0]}')
+                # =-=-=-==-=----=--=-=-=--=-=---=-=-=
                 loginAdm.userloginAdm.setText('')
                 loginAdm.senhaloginAdm.setText('')
                 loginAdm.texto_erro.setText('')
@@ -108,7 +140,7 @@ def entrarAdm():
                 loginAdm.texto_erro.setText('Campo de senha vazio ou senha inválida.')
 
         except IndexError:
-            loginAdm.texto_erro.setText('Usuário inválido ou senha incorreta.')
+            loginAdm.texto_erro.setText('Usuário ou senha incorretos.')
     else:
         loginAdm.texto_erro.setText('Preencha o campo de usuário.')
 
@@ -122,6 +154,13 @@ def entrarCliente():
             senhacorreta = cursor.fetchall()
             if (senha != '') and senha == senhacorreta[0][0]:
                 esperarCliente()
+                cursor.execute(f"SELECT email FROM cliente WHERE usuario = '{usuario}'")
+                global clienteAtual, email_clienteAtual
+                clienteAtual = usuario
+                email_clienteAtual = cursor.fetchall()
+                perfilCliente.olaCliente.setText(f'Olá, {clienteAtual}!')
+                perfilCliente.emailCliente.setText(f'{email_clienteAtual[0][0]}')
+                # =-=-=-==-=----=--=-=-=--=-=---=-=-=
                 loginCliente.userloginCliente.setText('')
                 loginCliente.senhaloginCliente.setText('')
                 loginCliente.texto_erro.setText('')
@@ -129,67 +168,188 @@ def entrarCliente():
                 loginCliente.texto_erro.setText('Campo de senha vazio ou senha inválida.')
 
         except IndexError:
-            loginCliente.texto_erro.setText('Usuário inválido ou senha incorreta.')
+            loginCliente.texto_erro.setText('Usuário ou senha incorretos.')
     else:
         loginCliente.texto_erro.setText('Preencha o campo de usuário.')
 
 def abrirloginAdm():
     inicio.hide()
     loginAdm.show()
+    global clienteAtual
+    clienteAtual = ''
 
 def abrirloginCliente():
-    inicio.hide()
+    inicio.hide() or perfilAdm.hide()
     loginCliente.show()
+    global admAtual
+    admAtual = ''
 
 def abrirCadastroAdm():
     loginAdm.hide()
     cadastroAdm.show()
+    loginAdm.userloginAdm.setText('')
+    loginAdm.senhaloginAdm.setText('')
+    loginAdm.texto_erro.setText('')
 
 def abrirCadastroCliente():
     loginCliente.hide()
     cadastroCliente.show()
+    loginCliente.userloginCliente.setText('')
+    loginCliente.senhaloginCliente.setText('')
+    loginCliente.texto_erro.setText('')
+
+def abrirdadosAdm():
+    perfilAdm.hide()
+    dadosAdm.show()
+
+def abrirdadosCliente():
+    perfilCliente.hide()
+    dadosCliente.show()
 
 def abrirPostarEvento():
     perfilAdm.hide()
     postarEvento.show()
+
+# FUNÇÕES DE POST
+def confereEvento():
+    nome = postarEvento.nomeEvento.text()
+    data = postarEvento.dataEvento.date()
+    hora = postarEvento.horaEvento.time()
+    local = postarEvento.localEvento.text()
+    qtd_ingressos = postarEvento.qtd_Ingressos.text()
+    global tipo
+    #print(hora.toString(Qt.DateFormat.ISODate))
+    #print(data.toString(Qt.DateFormat.ISODate))
+
+    if postarEvento.tipoDanca.isChecked():
+        postarEvento.imagem.setPixmap(QtGui.QPixmap('./imgs/dance.png'))
+        tipo = 'Evento de Dança'
+
+    elif postarEvento.tipoPeca.isChecked():
+        postarEvento.imagem.setPixmap(QtGui.QPixmap('./imgs/peca.png'))
+        tipo = 'Peça Teatral'
+
+    elif postarEvento.tipoMusical.isChecked():
+        postarEvento.imagem.setPixmap(QtGui.QPixmap('./imgs/musical.png'))
+        tipo = 'Evento Musical'
+    
+    postarEvento.descricao.setText(f'Nome: {nome}\nData: {data.toString(Qt.DateFormat.ISODate)}\nHora: {hora.toString(Qt.DateFormat.ISODate)}\nLocal: {local}\nQtd Ingressos: {qtd_ingressos}\n{tipo}')
+    
+def salvaEvento(): # AINDA NÃO USANDO O BANCO DE DADOS
+    nome = postarEvento.nomeEvento.text()
+    data = postarEvento.dataEvento.date()
+    hora = postarEvento.horaEvento.time()
+    local = postarEvento.localEvento.text()
+    qtd_ingressos = postarEvento.qtd_Ingressos.text()
+    radiobt = postarEvento.tipoDanca.isChecked() or postarEvento.tipoPeca.isChecked() or postarEvento.tipoMusical.isChecked()
+    global tipo
+
+    if (nome != '') and (local != '') and (qtd_ingressos != '') and radiobt:
+        try:
+            
+            qtd_ingressos = int(qtd_ingressos)
+            print('evento salvo.')
+            print(admAtual)
+            #-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=--
+            #postarEvento.nomeEvento.setText('')
+            #postarEvento.localEvento.setText('')
+            #postarEvento.qtd_Ingressos.setText('')
+            #postarEvento.hide()
+            #meuEvento.show()
+        except ValueError:
+            postarEvento.texto_erro.setText('Insira somente números na quantidade de ingressos.')
+        except:
+            print('outro erro')
+
+        '''except sqlite3.Error as erro:
+            print('Erro ao inserir dados:', erro)
+            #mensagem na tela'''
+    else:
+        postarEvento.texto_erro.setText('preencha os campos para salvar!')
+###########################################################################    
+
+
+def abrirprincipal():
+    perfilAdm.hide() or perfilCliente.hide()
+    principal.show()
 
 def sair():
     banco.close()
     perfilAdm.close() 
     perfilCliente.close()
 
-# botões de voltar adm.
+# para botões de voltar adm.
 def voltar_loginAdm():
     loginAdm.hide()
     inicio.show()
+    loginAdm.userloginAdm.setText('')
+    loginAdm.senhaloginAdm.setText('')
+    loginAdm.texto_erro.setText('')
 
 def voltar_cadastroAdm():
     cadastroAdm.hide()
     loginAdm.show()
+    cadastroAdm.erro.setText('')
+    cadastroAdm.usuarioAdm.setText('')
+    cadastroAdm.emailAdm.setText('')
+    cadastroAdm.telefoneAdm.setText('')
+    cadastroAdm.senhaAdm.setText('')
+    cadastroAdm.confirmasenhaAdm.setText('')
 
 def voltar_perfilAdm():
     perfilAdm.hide()
     loginAdm.show()
 
-# botões de voltar cliente.
+def voltar_postEvento():
+    postarEvento.hide()
+    perfilAdm.show()
+    postarEvento.nomeEvento.setText('')
+    postarEvento.localEvento.setText('')
+    postarEvento.qtd_Ingressos.setText('')
+
+def voltar_dadosAdm():
+    dadosAdm.hide()
+    perfilAdm.show()
+
+# para botões de voltar cliente.
 def voltar_loginCliente():
     loginCliente.hide()
     inicio.show()
+    loginCliente.userloginCliente.setText('')
+    loginCliente.senhaloginCliente.setText('')
+    loginCliente.texto_erro.setText('')
 
 def voltar_cadastroCliente():
     cadastroCliente.hide()
     loginCliente.show()
+    cadastroCliente.erro2.setText('')
+    cadastroCliente.usuarioCliente.setText('')
+    cadastroCliente.emailCliente.setText('')
+    cadastroCliente.telefoneCliente.setText('')
+    cadastroCliente.senhaCliente.setText('')
+    cadastroCliente.confirmasenhaCliente.setText('')
 
 def voltar_perfilCliente(): # deve voltar para a tela dos eventos, mas de início volta para o login.
     perfilCliente.hide()
-    loginCliente.show()
+    principal.show()
 
+def voltar_dadosCliente():
+    dadosCliente.hide()
+    perfilCliente.show()
+
+# para botão de acesso à principal.
+def voltar_principal():
+    principal.hide()
+    if admAtual == '':
+        perfilCliente.show()
+    elif clienteAtual == '':
+        perfilAdm.show()
 
 # botões da tela de início:
 inicio.bt_vender.clicked.connect(abrirloginAdm)
 inicio.bt_comprar.clicked.connect(abrirloginCliente)
 
-# >> BUTTON CLICKED ADM
+# >>>> BUTTON CLICKED ADM <<<<
 # TELA DE LOGIN:
 loginAdm.bt_loginAdm.clicked.connect(entrarAdm) 
 loginAdm.bt_cadastrarAdm.clicked.connect(abrirCadastroAdm)
@@ -201,21 +361,43 @@ cadastroAdm.bt_voltarcadastroAdm.clicked.connect(voltar_cadastroAdm)
 
 # TELA DE PERFIL:
 perfilAdm.bt_sairAdm.clicked.connect(sair)
-perfilAdm.bt_voltarperfilAdm.clicked.connect(voltar_perfilAdm)
+perfilAdm.bt_voltarperfilAdm.clicked.connect(voltar_perfilAdm) 
+perfilAdm.bt_dadosAdm.clicked.connect(abrirdadosAdm)
+perfilAdm.bt_postarevento.clicked.connect(abrirPostarEvento)
+# botão de ver seus eventos
+perfilAdm.bt_navegarAdm.clicked.connect(abrirprincipal)
+perfilAdm.bt_comprarAdm.clicked.connect(abrirloginCliente)
 
-# >> BUTTON CLICKED CLIENTE
+# TELA DE DADOS
+dadosAdm.bt_voltardadosAdm.clicked.connect(voltar_dadosAdm)
+
+# TELA DE POST DE EVENTOS:
+postarEvento.bt_confereEvento.clicked.connect(confereEvento)
+postarEvento.bt_postarEvento.clicked.connect(salvaEvento) # <<<<<<<<<<<<<<<<<<<<<<<
+postarEvento.bt_voltar.clicked.connect(voltar_postEvento)
+
+# >>>> BUTTON CLICKED CLIENTE <<<<
 # TELA DE LOGIN:
 loginCliente.bt_loginCliente.clicked.connect(entrarCliente) 
 loginCliente.bt_cadastrarCliente.clicked.connect(abrirCadastroCliente)
 loginCliente.bt_voltarloginCliente.clicked.connect(voltar_loginCliente)
 
 # TELA DE CADASTRO:
-cadastroCliente.bt_salvarloginCliente.clicked.connect(salvar_dadosACliente)
+cadastroCliente.bt_salvarloginCliente.clicked.connect(salvar_dadosCliente)
 cadastroCliente.bt_voltarCliente.clicked.connect(voltar_cadastroCliente)
 
 # TELA DE PERFIL:
+perfilCliente.bt_eventos.clicked.connect(abrirprincipal)
+# botão de ver seus ingressos
+perfilCliente.bt_dadosCliente.clicked.connect(abrirdadosCliente)
 perfilCliente.bt_sairCliente.clicked.connect(sair)
 perfilCliente.bt_voltarperfilCliente.clicked.connect(voltar_perfilCliente)
+
+# TELA DE DADOS
+dadosCliente.bt_voltardados.clicked.connect(voltar_dadosCliente)
+
+# >> BUTTON CLICKED PRINCIPAL
+principal.bt_voltarPrincipal.clicked.connect(voltar_principal)
 
 inicio.show()
 app.exec()

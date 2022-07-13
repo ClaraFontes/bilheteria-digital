@@ -106,79 +106,7 @@ QPushButton:hover{
      </size>
     </property>
    </widget>
-   <widget class="QLineEdit" name="nome">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>140</y>
-      <width>391</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(216, 216, 216);
-border-radius: 12px;
-border: none;</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="email">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>190</y>
-      <width>391</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(216, 216, 216);
-border-radius: 12px;
-border: none;</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="telefone">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>240</y>
-      <width>391</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(216, 216, 216);
-border-radius: 12px;
-border: none;</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="cpf">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>290</y>
-      <width>391</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(216, 216, 216);
-border-radius: 12px;
-border: none;</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="senha">
+   <widget class="QLineEdit" name="confirmacao">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -187,54 +115,25 @@ border: none;</string>
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(216, 216, 216);
+     <string notr="true">background-color: rgba(221, 33, 33, 0.2);
 border-radius: 12px;
 border: none;</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
-   </widget>
-   <widget class="QPushButton" name="bt_salvarDados">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>430</y>
-      <width>221</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial Rounded MT Bold</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-	background-color: rgba(221, 33, 33, 0.99);
-	border-radius: 12px;
-	color: rgb(238, 238, 238);
-}
-
-QPushButton:hover{
-	background-color: rgb(255, 206, 137);
-	border-radius: 12px;
-	color: rgb(100, 76, 47);
-}
-</string>
-    </property>
-    <property name="text">
-     <string>SALVAR</string>
+    <property name="placeholderText">
+     <string>Senha</string>
     </property>
    </widget>
    <widget class="QPushButton" name="bt_deleteAdm">
@@ -244,7 +143,7 @@ QPushButton:hover{
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>500</y>
+      <y>440</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -338,16 +237,147 @@ color: rgba(221, 33, 33, 0.99);</string>
      </property>
     </widget>
    </widget>
+   <widget class="QLabel" name="erro">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>400</y>
+      <width>411</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <italic>true</italic>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="nome">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>391</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(216, 216, 216);
+border-radius: 12px;
+border: none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="email">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>190</y>
+      <width>391</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(216, 216, 216);
+border-radius: 12px;
+border: none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="telefone">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>240</y>
+      <width>391</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(216, 216, 216);
+border-radius: 12px;
+border: none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="senha">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>290</y>
+      <width>391</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(216, 216, 216);
+border-radius: 12px;
+border: none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
    <zorder>Topo</zorder>
    <zorder>tck</zorder>
    <zorder>bt_voltardadosAdm</zorder>
+   <zorder>confirmacao</zorder>
+   <zorder>bt_deleteAdm</zorder>
+   <zorder>erro</zorder>
    <zorder>nome</zorder>
    <zorder>email</zorder>
    <zorder>telefone</zorder>
-   <zorder>cpf</zorder>
    <zorder>senha</zorder>
-   <zorder>bt_salvarDados</zorder>
-   <zorder>bt_deleteAdm</zorder>
   </widget>
  </widget>
  <resources/>

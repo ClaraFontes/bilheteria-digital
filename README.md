@@ -12,7 +12,7 @@
  
 # 📝 Descrição do Projeto:
  
- Interface Gráfica para compras e vendas de eventos da área específica de apresentações teatrais. Através da biblioteca PyQt6, junto com o aplicativo Qt Designer e Banco de Dados. 
+ Interface Gráfica para compras e vendas de eventos da área específica de apresentações teatrais. Através das bibliotecas PyQt6, Qrcode, Time, junto com o aplicativo Qt Designer e Banco de Dados. 
  
 # ⚙️ Funcionalidades:
  
@@ -23,6 +23,9 @@
 - ``Qt Designer``
 - ``PyQt6``
 - ``SQLite``
+- ``Qrcode``
+- ``Time``
+
 
 # 👥 Desenvolvedores do Projeto
 

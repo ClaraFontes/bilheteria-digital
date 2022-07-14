@@ -2,6 +2,7 @@ from PyQt6 import uic, QtWidgets, QtGui
 from PyQt6.QtCore import Qt
 import sqlite3
 import time
+import qrcode
 
 ###################################################################
 app = QtWidgets.QApplication([])
@@ -11,6 +12,7 @@ clienteAtual = ''
 email_clienteAtual = ''
 eventoAtual = ''
 tipo = ''
+qtd = 0
 comprados = 0                                                         
 # importando as telas.
 inicio = uic.loadUi('./telas/tela_inicio.ui')
@@ -405,8 +407,21 @@ def detalhes():
     except sqlite3.OperationalError:
         principal.erro.setText('Selecione uma célula.')
 
+def geraQrcode():
+    global qtd
+    imagens = []
+    x = 0
+    while x < qtd:
+        imagens.append(x)
+        x += 1
+
+    i = len(imagens)
+    for i in imagens:
+        meu_qrcode = qrcode.make([i])
+        meu_qrcode.save(f"./qrcodes/qrcode_ingresso{i}.png")
+
 def finalizar():
-    global admAtual, clienteAtual, eventoAtual
+    global admAtual, clienteAtual, eventoAtual,qtd
     if admAtual == '':
         usuario = clienteAtual
     elif clienteAtual == '':
@@ -430,17 +445,21 @@ def finalizar():
                 cursor.execute(f"UPDATE eventos SET qtdIngr = {qtd_disp} WHERE ID = {id}")
                 banco.commit()
 
+                time.sleep(1)
                 detalhes_eventos.hide()
                 principal.show()                
                 #-=-=-=-=-=-=-=-=-=-=-=-=-=
                 detalhes_eventos.ingressos.setText('')
                 detalhes_eventos.confirmacao.setText('')
+                #-=-=-=-=-=-=-=-=-=-=-=-=-=
+                geraQrcode()
 
             except ValueError:
                 detalhes_eventos.erro.setText('Insira somente números na quantidade de ingressos.')
             except sqlite3.Error as erro:
                 print(erro)
                 detalhes_eventos.erro.setText('Houve algum problema.')
+
     else:
         detalhes_eventos.erro.setText('Campos vazios ou usuario incorreto')
 

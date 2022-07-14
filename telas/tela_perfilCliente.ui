@@ -110,7 +110,7 @@ QPushButton:hover{
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>200</y>
+      <y>220</y>
       <width>281</width>
       <height>51</height>
      </rect>
@@ -151,7 +151,7 @@ QPushButton:hover{
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>470</y>
+      <y>400</y>
       <width>281</width>
       <height>51</height>
      </rect>
@@ -191,47 +191,6 @@ QPushButton:hover{
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="bt_ingressos">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>290</y>
-      <width>281</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial Rounded MT Bold</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-	background-color: rgba(221, 33, 33, 0.99);
-	border-radius: 12px;
-	color: rgb(238, 238, 238);
-}
-
-QPushButton:hover{
-	background-color: rgb(255, 206, 137);
-	border-radius: 12px;
-	color: rgb(100, 76, 47);
-}
-</string>
-    </property>
-    <property name="text">
-     <string>Meus Ingressos</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="bt_dadosCliente">
     <property name="enabled">
      <bool>true</bool>
@@ -239,7 +198,7 @@ QPushButton:hover{
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>380</y>
+      <y>310</y>
       <width>281</width>
       <height>51</height>
      </rect>

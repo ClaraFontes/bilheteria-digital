@@ -37,10 +37,10 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>340</y>
-      <width>381</width>
-      <height>41</height>
+      <x>50</x>
+      <y>360</y>
+      <width>311</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -150,10 +150,10 @@ QPushButton:hover{
     </property>
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>220</y>
-      <width>381</width>
-      <height>41</height>
+      <x>50</x>
+      <y>280</y>
+      <width>311</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -185,57 +185,16 @@ QPushButton:hover{
      <string>Postar Evento</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="bt_meusEventos">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>280</y>
-      <width>381</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial Rounded MT Bold</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-	background-color: rgba(221, 33, 33, 0.99);
-	border-radius: 12px;
-	color: rgb(238, 238, 238);
-}
-
-QPushButton:hover{
-	background-color: rgb(255, 206, 137);
-	border-radius: 12px;
-	color: rgb(100, 76, 47);
-}
-</string>
-    </property>
-    <property name="text">
-     <string>Meus Eventos</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="bt_sairAdm">
     <property name="enabled">
      <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>460</y>
-      <width>381</width>
-      <height>41</height>
+      <x>50</x>
+      <y>440</y>
+      <width>311</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -267,57 +226,16 @@ QPushButton:hover{
      <string>sair</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="bt_comprarAdm">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>400</y>
-      <width>381</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial Rounded MT Bold</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-	background-color: rgba(221, 33, 33, 0.99);
-	border-radius: 12px;
-	color: rgb(238, 238, 238);
-}
-
-QPushButton:hover{
-	background-color: rgb(255, 206, 137);
-	border-radius: 12px;
-	color: rgb(100, 76, 47);
-}
-</string>
-    </property>
-    <property name="text">
-     <string>Comprar Ingressos</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="bt_dadosAdm">
     <property name="enabled">
      <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>160</y>
-      <width>381</width>
-      <height>41</height>
+      <x>50</x>
+      <y>200</y>
+      <width>311</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -413,7 +331,7 @@ color: rgba(221, 33, 33, 0.99);</string>
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>90</y>
+      <y>100</y>
       <width>371</width>
       <height>16</height>
      </rect>
@@ -432,7 +350,7 @@ color: rgba(221, 33, 33, 0.99);</string>
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>110</y>
+      <y>120</y>
       <width>371</width>
       <height>16</height>
      </rect>
@@ -451,9 +369,7 @@ color: rgba(221, 33, 33, 0.99);</string>
    <zorder>bt_navegarAdm</zorder>
    <zorder>bt_voltarperfilAdm</zorder>
    <zorder>bt_postarevento</zorder>
-   <zorder>bt_meusEventos</zorder>
    <zorder>bt_sairAdm</zorder>
-   <zorder>bt_comprarAdm</zorder>
    <zorder>bt_dadosAdm</zorder>
    <zorder>Topo</zorder>
    <zorder>olaAdm</zorder>
